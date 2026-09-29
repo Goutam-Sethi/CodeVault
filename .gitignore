@@ -1,0 +1,45 @@
+# Compiled object files
+
+*.o
+*.obj
+
+# Executables
+
+*.exe
+*.out
+
+# Build artifacts
+
+build/
+bin/
+
+# CodeVault build output
+
+codevault
+
+# Debugging files
+
+*.dSYM/
+*.su
+*.d
+
+# IDE files
+
+.vscode/
+.vs/
+.idea/
+
+# OS-specific files
+
+.DS_Store
+Thumbs.db
+
+# Temporary files
+
+*.tmp
+*.temp
+*~
+
+# Test/output files
+
+*.log
