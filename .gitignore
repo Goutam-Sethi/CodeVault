@@ -1,45 +1,48 @@
-# Compiled object files
+# =========================
+# CodeVault - Git Ignore
+# =========================
 
+# Compiled executable
+codevault
+
+# C object files
 *.o
 *.obj
 
-# Executables
-
+# Other compiled executables
 *.exe
 *.out
 
-# Build artifacts
-
+# Build directories
 build/
 bin/
 
-# CodeVault build output
+# CodeVault runtime repository
+# Generated when running: ./codevault init
+.codevault/
 
-codevault
-
-# Debugging files
-
-*.dSYM/
-*.su
+# Debugging / profiling files
 *.d
+*.su
+*.gcda
+*.gcno
+*.gcov
 
-# IDE files
-
+# IDE configuration
 .vscode/
 .vs/
 .idea/
 
 # OS-specific files
-
 .DS_Store
 Thumbs.db
 
-# Temporary files
-
+# Temporary/editor backup files
 *.tmp
 *.temp
 *~
+*.swp
+*.swo
 
-# Test/output files
-
+# Log files
 *.log
