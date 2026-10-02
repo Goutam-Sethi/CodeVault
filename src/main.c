@@ -3,7 +3,7 @@
 
 #include "init.h"
 #include "status.h"
-#include "hash.h"
+#include "add.h"
 
 int main(int argc, char *argv[]) {
   if (argc < 2) {
@@ -17,6 +17,15 @@ int main(int argc, char *argv[]) {
 
   if (strcmp(argv[1], "status") == 0) {
     return status_repository();
+  }
+
+  if (strcmp(argv[1], "add") == 0) {
+    if (argc < 3) {
+      printf("Usage: codevault add <file>\n");
+      return 1;
+    }
+
+    return add_file(argv[2]);
   }
 
   printf("Unknown command: %s\n", argv[1]);
