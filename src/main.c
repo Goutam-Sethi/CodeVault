@@ -3,6 +3,7 @@
 
 #include "init.h"
 #include "status.h"
+#include "hash.h"
 
 int main(int argc, char *argv[]) {
   if (argc < 2) {
