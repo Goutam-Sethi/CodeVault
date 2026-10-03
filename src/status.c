@@ -38,10 +38,6 @@ void scan_directory(const char *directory, char tracked_files[][256], unsigned l
       continue;
     }
 
-    if (strcmp(entry->d_name, ".codevault") == 0) {
-      continue;
-    }
-
     char path[1024];
 
     if (strcmp(directory, ".") == 0) {

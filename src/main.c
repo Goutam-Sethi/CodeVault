@@ -5,6 +5,7 @@
 #include "status.h"
 #include "add.h"
 #include "commit.h"
+#include "restore.h"
 
 int main(int argc, char *argv[]) {
   if (argc < 2) {
@@ -36,6 +37,14 @@ int main(int argc, char *argv[]) {
     }
 
     return commit_repository(argv[2]);
+  }
+
+  if (strcmp(argv[1], "restore") == 0) {
+    if (argc >= 3) {
+      return restore_repository(argv[2]);
+    }
+
+  return restore_repository(NULL);
   }
 
   printf("Unknown command: %s\n", argv[1]);
