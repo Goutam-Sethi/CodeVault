@@ -97,6 +97,56 @@ int add_file(const char *filename) {
     return 0;
   }
 
+  FILE *branch = fopen(".codevault/refs/heads/main", "r");
+
+  if (branch != NULL) {
+    unsigned long long commit_hash;
+
+    if (fscanf(branch, "%llu", &commit_hash) == 1) {
+      fclose(branch);
+
+      char commit_path[256];
+
+      snprintf(commit_path, sizeof(commit_path), ".codevault/objects/%llu", commit_hash);
+
+      FILE *commit_file = fopen(commit_path, "r");
+
+      if (commit_file != NULL) {
+        char line[512];
+        int reading_files = 0;
+
+        while (fgets(line, sizeof(line), commit_file) != NULL) {
+          if (strncmp(line, "files:", 6) == 0) {
+            reading_files = 1;
+            continue;
+          }
+
+          if (reading_files) {
+            char committed_filename[256];
+            unsigned long long committed_hash;
+
+            if (sscanf(line, "%255s %llu", committed_filename, &committed_hash) == 2) {
+              if (strcmp(committed_filename, filename) == 0) {
+                if (committed_hash == new_hash) {
+                  fclose(commit_file);
+                  printf("'%s' is already committed with the same content.\n", filename);
+                  return 0;
+                }
+
+                break;
+              }
+            }
+          }
+        }
+
+        fclose(commit_file);
+      }
+    }
+    else {
+      fclose(branch);
+    }
+  }
+
   index = fopen(".codevault/index", "a");
 
   if (index == NULL) {

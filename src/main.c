@@ -4,7 +4,7 @@
 #include "init.h"
 #include "status.h"
 #include "add.h"
-#include "object.h"
+#include "commit.h"
 
 int main(int argc, char *argv[]) {
   if (argc < 2) {
@@ -29,15 +29,13 @@ int main(int argc, char *argv[]) {
     return add_file(argv[2]);
   }
 
-  if (strcmp(argv[1], "object") == 0) {
-    if (argc < 4) {
-      printf("Usage: codevault object <file> <hash>\n");
+  if (strcmp(argv[1], "commit") == 0) {
+    if (argc < 3) {
+      printf("Usage: codevault commit <message>\n");
       return 1;
     }
 
-    unsigned long long hash = strtoull(argv[3], NULL, 10);
-
-    return store_object(argv[2], hash);
+    return commit_repository(argv[2]);
   }
 
   printf("Unknown command: %s\n", argv[1]);
