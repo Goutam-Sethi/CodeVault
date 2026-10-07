@@ -6,6 +6,7 @@
 #include "add.h"
 #include "commit.h"
 #include "restore.h"
+#include "diff.h"
 
 int main(int argc, char *argv[]) {
   if (argc < 2) {
@@ -44,7 +45,15 @@ int main(int argc, char *argv[]) {
       return restore_repository(argv[2]);
     }
 
-  return restore_repository(NULL);
+    return restore_repository(NULL);
+  }
+
+  if (strcmp(argv[1], "diff") == 0) {
+    if (argc >= 3) {
+      return diff_repository(argv[2]);
+    }
+
+    return diff_repository(NULL);
   }
 
   printf("Unknown command: %s\n", argv[1]);
