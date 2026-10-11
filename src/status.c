@@ -5,6 +5,7 @@
 
 #include "status.h"
 #include "hash.h"
+#include "ignore.h"
 
 void scan_directory(const char *directory, char tracked_files[][256], unsigned long long tracked_hashes[], int tracked_count, char committed_files[][256], unsigned long long committed_hashes[], int committed_count, int depth) {
   DIR *dir = opendir(directory);
@@ -45,6 +46,10 @@ void scan_directory(const char *directory, char tracked_files[][256], unsigned l
     }
     else {
       snprintf(path, sizeof(path), "%s/%s", directory, entry->d_name);
+    }
+
+    if (is_ignored(path)) {
+      continue;
     }
 
     struct stat file_info;

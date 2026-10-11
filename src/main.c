@@ -7,6 +7,7 @@
 #include "commit.h"
 #include "restore.h"
 #include "diff.h"
+#include "ignore.h"
 
 int main(int argc, char *argv[]) {
   if (argc < 2) {

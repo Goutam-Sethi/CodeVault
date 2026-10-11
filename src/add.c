@@ -4,8 +4,14 @@
 
 #include "add.h"
 #include "hash.h"
+#include "ignore.h"
 
 int add_file(const char *filename) {
+  if (is_ignored(filename)) {
+    printf("Error: '%s' is ignored by CodeVault.\n", filename);
+    return 1;
+  }
+
   struct stat file_info;
 
   if (stat(filename, &file_info) != 0) {
