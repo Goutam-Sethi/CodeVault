@@ -4,6 +4,7 @@
 
 # Compiled executable
 codevault
+.codevaultignore
 
 # C object files
 *.o
